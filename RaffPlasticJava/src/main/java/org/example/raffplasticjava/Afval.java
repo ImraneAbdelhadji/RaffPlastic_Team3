@@ -5,7 +5,7 @@ public class Afval {
     private String type;
 
     public Afval(int afvalID, String type) {
-        this.afvalID = afvalID;
+        this.setAfvalID(afvalID); // Gebruik de setter voor validatie
         this.type = type;
     }
 
@@ -14,6 +14,9 @@ public class Afval {
     }
 
     public void setAfvalID(int afvalID) {
+        if (afvalID <= 0) {
+            throw new IllegalArgumentException("AfvalID moet een positief getal zijn.");
+        }
         this.afvalID = afvalID;
     }
 

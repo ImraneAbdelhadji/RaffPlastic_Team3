@@ -12,7 +12,7 @@ public class Verkoop {
 
     // Constructor
     public Verkoop(int verkoopID, LocalDateTime datum, int klantID, float totaalBedrag, int bestellingID, int grondstofID) {
-        this.verkoopID = verkoopID;
+        this.setVerkoopID(verkoopID); // Validatie via setter
         this.datum = datum;
         this.klantID = klantID;
         this.totaalBedrag = totaalBedrag;
@@ -27,6 +27,9 @@ public class Verkoop {
     }
 
     public void setVerkoopID(int verkoopID) {
+        if (verkoopID <= 0) {
+            throw new IllegalArgumentException("VerkoopID moet een positief getal zijn.");
+        }
         this.verkoopID = verkoopID;
     }
 

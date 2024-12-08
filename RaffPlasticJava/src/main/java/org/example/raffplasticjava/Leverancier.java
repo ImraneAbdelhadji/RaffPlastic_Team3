@@ -6,7 +6,7 @@ public class Leverancier {
     private String email;
 
     public Leverancier(int leverancierID, String naam, String email) {
-        this.leverancierID = leverancierID;
+        this.setLeverancierID(leverancierID); // Validatie via setter
         this.naam = naam;
         this.email = email;
     }
@@ -16,6 +16,9 @@ public class Leverancier {
     }
 
     public void setLeverancierID(int leverancierID) {
+        if (leverancierID <= 0) {
+            throw new IllegalArgumentException("LeverancierID moet een positief getal zijn.");
+        }
         this.leverancierID = leverancierID;
     }
 

@@ -16,6 +16,12 @@ public class VerkoopTest {
         assertEquals(500.0f, verkoop.getTotaalBedrag());
         assertEquals(1, verkoop.getBestellingID());
         assertEquals(1, verkoop.getGrondstofID());
+
+        // Testen van negatieve verkoopID
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Verkoop(0, LocalDateTime.now(), 1, 500.0f, 1, 1); // Ongeldige verkoopID
+        });
+        assertEquals("VerkoopID moet een positief getal zijn.", exception.getMessage());
     }
 
     @Test
@@ -27,5 +33,11 @@ public class VerkoopTest {
 
         assertEquals(650.0f, verkoop.getTotaalBedrag());
         assertEquals(2, verkoop.getBestellingID());
+
+        // Testen van negatieve verkoopID via setter
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            verkoop.setVerkoopID(-5); // Ongeldige verkoopID
+        });
+        assertEquals("VerkoopID moet een positief getal zijn.", exception.getMessage());
     }
 }

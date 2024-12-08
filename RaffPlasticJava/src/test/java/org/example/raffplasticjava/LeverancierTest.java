@@ -12,6 +12,12 @@ public class LeverancierTest {
         assertEquals(1, leverancier.getLeverancierID());
         assertEquals("Company A", leverancier.getNaam());
         assertEquals("a@company.com", leverancier.getEmail());
+
+        // Testen van negatieve leverancierID
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Leverancier(0, "Company B", "b@company.com"); // Ongeldige leverancierID
+        });
+        assertEquals("LeverancierID moet een positief getal zijn.", exception.getMessage());
     }
 
     @Test
@@ -23,5 +29,11 @@ public class LeverancierTest {
 
         assertEquals("Company C", leverancier.getNaam());
         assertEquals("c@company.com", leverancier.getEmail());
+
+        // Testen van negatieve leverancierID via setter
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            leverancier.setLeverancierID(-5); // Ongeldige leverancierID
+        });
+        assertEquals("LeverancierID moet een positief getal zijn.", exception.getMessage());
     }
 }

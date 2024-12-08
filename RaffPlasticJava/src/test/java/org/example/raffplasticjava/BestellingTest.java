@@ -12,16 +12,29 @@ public class BestellingTest {
         assertEquals(1, bestelling.getBestellingID());
         assertEquals("Type A", bestelling.getType());
         assertEquals("In progress", bestelling.getStatus());
+
+        bestelling = new Bestelling(2, "Type B", "Completed");
+        assertEquals(2, bestelling.getBestellingID());
+        assertEquals("Type B", bestelling.getType());
+        assertEquals("Completed", bestelling.getStatus());
     }
 
     @Test
-    public void testSettersAndGetters() {
-        Bestelling bestelling = new Bestelling(2, "Type B", "Completed");
+    public void testSettersAndValidation() {
+        Bestelling bestelling = new Bestelling(3, "Type C", "Pending");
 
-        bestelling.setType("Type C");
-        bestelling.setStatus("Pending");
+        bestelling.setType("Type D");
+        bestelling.setStatus("In progress");
 
-        assertEquals("Type C", bestelling.getType());
-        assertEquals("Pending", bestelling.getStatus());
+        assertEquals("Type D", bestelling.getType());
+        assertEquals("In progress", bestelling.getStatus());
+
+        bestelling.setBestellingID(5);
+        assertEquals(5, bestelling.getBestellingID());
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            bestelling.setBestellingID(-1); // Negatief of nul bestellingID moet een fout genereren
+        });
+        assertEquals("BestellingID moet een positief getal zijn.", exception.getMessage());
     }
 }

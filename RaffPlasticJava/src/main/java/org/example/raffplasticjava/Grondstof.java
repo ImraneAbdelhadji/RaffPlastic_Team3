@@ -7,10 +7,10 @@ public class Grondstof {
     private float prijs;
 
     public Grondstof(int grondstofID, String type, char kwaliteit, float prijs) {
-        this.grondstofID = grondstofID;
+        this.setGrondstofID(grondstofID);
         this.type = type;
         this.kwaliteit = kwaliteit;
-        this.prijs = prijs;
+        this.setPrijs(prijs);
     }
 
     public int getGrondstofID() {
@@ -18,6 +18,9 @@ public class Grondstof {
     }
 
     public void setGrondstofID(int grondstofID) {
+        if (grondstofID <= 0) {
+            throw new IllegalArgumentException("GrondstofID moet een positief getal zijn.");
+        }
         this.grondstofID = grondstofID;
     }
 
@@ -42,6 +45,9 @@ public class Grondstof {
     }
 
     public void setPrijs(float prijs) {
+        if (prijs < 25.0f) {
+            throw new IllegalArgumentException("De prijs moet minimaal 25 euro zijn.");
+        }
         this.prijs = prijs;
     }
 }

@@ -7,10 +7,10 @@ public class Klant {
     private String email;
 
     public Klant(int klantID, String voornaam, String achternaam, String email) {
-        this.klantID = klantID;
+        this.setKlantID(klantID); // Validatie via setter
         this.voornaam = voornaam;
         this.achternaam = achternaam;
-        this.email = email;
+        this.setEmail(email); // Validatie via setter
     }
 
     public int getKlantID() {
@@ -18,6 +18,9 @@ public class Klant {
     }
 
     public void setKlantID(int klantID) {
+        if (klantID <= 0) {
+            throw new IllegalArgumentException("KlantID moet een positief getal zijn.");
+        }
         this.klantID = klantID;
     }
 
@@ -42,6 +45,9 @@ public class Klant {
     }
 
     public void setEmail(String email) {
+        if (email == null || !email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
+            throw new IllegalArgumentException("Ongeldig e-mailadres.");
+        }
         this.email = email;
     }
 }

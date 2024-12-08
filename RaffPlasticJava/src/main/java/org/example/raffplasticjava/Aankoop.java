@@ -10,10 +10,10 @@ public class Aankoop {
     private int bestellingID;
 
     public Aankoop(int aankoopID, LocalDateTime datum, int leverancierID, float totaalBedrag, int bestellingID) {
-        this.aankoopID = aankoopID;
+        this.setAankoopID(aankoopID); // Gebruik de setter voor validatie
         this.datum = datum;
         this.leverancierID = leverancierID;
-        this.totaalBedrag = totaalBedrag;
+        this.setTotaalBedrag(totaalBedrag); // Gebruik de setter voor validatie
         this.bestellingID = bestellingID;
     }
 
@@ -22,6 +22,9 @@ public class Aankoop {
     }
 
     public void setAankoopID(int aankoopID) {
+        if (aankoopID <= 0) {
+            throw new IllegalArgumentException("AankoopID moet een positief getal zijn.");
+        }
         this.aankoopID = aankoopID;
     }
 
@@ -46,6 +49,9 @@ public class Aankoop {
     }
 
     public void setTotaalBedrag(float totaalBedrag) {
+        if (totaalBedrag < 0) {
+            throw new IllegalArgumentException("Het totaalbedrag mag niet negatief zijn.");
+        }
         this.totaalBedrag = totaalBedrag;
     }
 

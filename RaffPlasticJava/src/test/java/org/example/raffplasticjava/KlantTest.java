@@ -13,16 +13,38 @@ public class KlantTest {
         assertEquals("John", klant.getVoornaam());
         assertEquals("Doe", klant.getAchternaam());
         assertEquals("john.doe@example.com", klant.getEmail());
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Klant(0, "Jane", "Doe", "jane.doe@example.com"); // Ongeldig klantID
+        });
+        assertEquals("KlantID moet een positief getal zijn.", exception.getMessage());
+
+        exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Klant(2, "Jane", "Doe", "janedoe.com"); // Ongeldig e-mailadres
+        });
+        assertEquals("Ongeldig e-mailadres.", exception.getMessage());
     }
 
     @Test
-    public void testSettersAndGetters() {
-        Klant klant = new Klant(2, "Jane", "Smith", "jane.smith@example.com");
+    public void testSettersAndValidation() {
+        Klant klant = new Klant(1, "John", "Doe", "john.doe@example.com");
 
-        klant.setVoornaam("Janet");
-        klant.setAchternaam("Johnson");
+        klant.setVoornaam("Johnny");
+        klant.setAchternaam("Dover");
+        klant.setEmail("john.dover@example.com");
 
-        assertEquals("Janet", klant.getVoornaam());
-        assertEquals("Johnson", klant.getAchternaam());
+        assertEquals("Johnny", klant.getVoornaam());
+        assertEquals("Dover", klant.getAchternaam());
+        assertEquals("john.dover@example.com", klant.getEmail());
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            klant.setKlantID(-1);
+        });
+        assertEquals("KlantID moet een positief getal zijn.", exception.getMessage());
+
+        exception = assertThrows(IllegalArgumentException.class, () -> {
+            klant.setEmail("johndover.com");
+        });
+        assertEquals("Ongeldig e-mailadres.", exception.getMessage());
     }
 }

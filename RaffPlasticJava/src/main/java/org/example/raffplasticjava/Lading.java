@@ -10,8 +10,8 @@ public class Lading {
     private int afvalID;
 
     public Lading(int ladingID, double gewicht, LocalDateTime datumOntvangst, int leverancierID, int afvalID) {
-        this.ladingID = ladingID;
-        this.gewicht = gewicht;
+        this.setLadingID(ladingID); // Validatie via setter
+        this.setGewicht(gewicht); // Validatie via setter
         this.datumOntvangst = datumOntvangst;
         this.leverancierID = leverancierID;
         this.afvalID = afvalID;
@@ -22,6 +22,9 @@ public class Lading {
     }
 
     public void setLadingID(int ladingID) {
+        if (ladingID <= 0) {
+            throw new IllegalArgumentException("LadingID moet een positief getal zijn.");
+        }
         this.ladingID = ladingID;
     }
 
@@ -30,6 +33,9 @@ public class Lading {
     }
 
     public void setGewicht(double gewicht) {
+        if (gewicht < 250) {
+            throw new IllegalArgumentException("Het gewicht moet minimaal 250 kg zijn.");
+        }
         this.gewicht = gewicht;
     }
 
