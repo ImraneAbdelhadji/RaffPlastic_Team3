@@ -4,15 +4,17 @@ import java.time.LocalDateTime;
 
 public class Lading {
     private int ladingID;
-    private float gewicht;
+    private double gewicht;
     private LocalDateTime datumOntvangst;
-    private String leverancier;
+    private int leverancierID;
+    private int afvalID;
 
-    public Lading(int ladingID, float gewicht, LocalDateTime datumOntvangst, String leverancier) {
+    public Lading(int ladingID, double gewicht, LocalDateTime datumOntvangst, int leverancierID, int afvalID) {
         this.ladingID = ladingID;
         this.gewicht = gewicht;
         this.datumOntvangst = datumOntvangst;
-        this.leverancier = leverancier;
+        this.leverancierID = leverancierID;
+        this.afvalID = afvalID;
     }
 
     public int getLadingID() {
@@ -23,11 +25,11 @@ public class Lading {
         this.ladingID = ladingID;
     }
 
-    public float getGewicht() {
+    public double getGewicht() {
         return gewicht;
     }
 
-    public void setGewicht(float gewicht) {
+    public void setGewicht(double gewicht) {
         this.gewicht = gewicht;
     }
 
@@ -39,11 +41,19 @@ public class Lading {
         this.datumOntvangst = datumOntvangst;
     }
 
-    public String getLeverancier() {
-        return leverancier;
+    public int getLeverancierID() {
+        return leverancierID;
     }
 
-    public void setLeverancier(String leverancier) {
-        this.leverancier = leverancier;
+    public void setLeverancierID(int leverancierID) {
+        this.leverancierID = leverancierID;
+    }
+
+    public int getAfvalID() {
+        return afvalID;
+    }
+
+    public void setAfvalID(int afvalID) {
+        this.afvalID = afvalID;
     }
 }

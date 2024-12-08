@@ -1,47 +1,59 @@
 package org.example.raffplasticjava;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class Aankoop {
     private int aankoopID;
     private LocalDateTime datum;
-    private String leverancier;
-    private float totaalBedrag; // Of totaal gewicht
-    private List<Afval> afvalLijst;
+    private int leverancierID;
+    private float totaalBedrag;
+    private int bestellingID;
 
-    // Constructor
-    public Aankoop(int aankoopID, LocalDateTime datum, String leverancier, float totaalBedrag, List<Afval> afvalLijst) {
+    public Aankoop(int aankoopID, LocalDateTime datum, int leverancierID, float totaalBedrag, int bestellingID) {
         this.aankoopID = aankoopID;
         this.datum = datum;
-        this.leverancier = leverancier;
+        this.leverancierID = leverancierID;
         this.totaalBedrag = totaalBedrag;
-        this.afvalLijst = afvalLijst;
+        this.bestellingID = bestellingID;
     }
 
-    // Getters
     public int getAankoopID() {
         return aankoopID;
+    }
+
+    public void setAankoopID(int aankoopID) {
+        this.aankoopID = aankoopID;
     }
 
     public LocalDateTime getDatum() {
         return datum;
     }
 
-    public String getLeverancier() {
-        return leverancier;
+    public void setDatum(LocalDateTime datum) {
+        this.datum = datum;
     }
 
-    public float getTotaalBedrag() { // Controleer dat deze methode bestaat
+    public int getLeverancierID() {
+        return leverancierID;
+    }
+
+    public void setLeverancierID(int leverancierID) {
+        this.leverancierID = leverancierID;
+    }
+
+    public float getTotaalBedrag() {
         return totaalBedrag;
     }
 
-    public List<Afval> getAfvalLijst() {
-        return afvalLijst;
-    }
-
-    // Setters (optioneel)
     public void setTotaalBedrag(float totaalBedrag) {
         this.totaalBedrag = totaalBedrag;
+    }
+
+    public int getBestellingID() {
+        return bestellingID;
+    }
+
+    public void setBestellingID(int bestellingID) {
+        this.bestellingID = bestellingID;
     }
 }

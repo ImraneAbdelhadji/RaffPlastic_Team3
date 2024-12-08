@@ -5,15 +5,22 @@ import java.time.LocalDateTime;
 public class Verkoop {
     private int verkoopID;
     private LocalDateTime datum;
-    private String klantNaam;
+    private int klantID;
     private float totaalBedrag;
+    private int bestellingID;
+    private int grondstofID;
 
-    public Verkoop(int verkoopID, LocalDateTime datum, String klantNaam, float totaalBedrag) {
+    // Constructor
+    public Verkoop(int verkoopID, LocalDateTime datum, int klantID, float totaalBedrag, int bestellingID, int grondstofID) {
         this.verkoopID = verkoopID;
         this.datum = datum;
-        this.klantNaam = klantNaam;
+        this.klantID = klantID;
         this.totaalBedrag = totaalBedrag;
+        this.bestellingID = bestellingID;
+        this.grondstofID = grondstofID;
     }
+
+    // Getters en Setters
 
     public int getVerkoopID() {
         return verkoopID;
@@ -31,12 +38,12 @@ public class Verkoop {
         this.datum = datum;
     }
 
-    public String getKlantNaam() {
-        return klantNaam;
+    public int getKlantID() {
+        return klantID;
     }
 
-    public void setKlantNaam(String klantNaam) {
-        this.klantNaam = klantNaam;
+    public void setKlantID(int klantID) {
+        this.klantID = klantID;
     }
 
     public float getTotaalBedrag() {
@@ -45,5 +52,33 @@ public class Verkoop {
 
     public void setTotaalBedrag(float totaalBedrag) {
         this.totaalBedrag = totaalBedrag;
+    }
+
+    public int getBestellingID() {
+        return bestellingID;
+    }
+
+    public void setBestellingID(int bestellingID) {
+        this.bestellingID = bestellingID;
+    }
+
+    public int getGrondstofID() {
+        return grondstofID;
+    }
+
+    public void setGrondstofID(int grondstofID) {
+        this.grondstofID = grondstofID;
+    }
+
+    @Override
+    public String toString() {
+        return "Verkoop{" +
+                "verkoopID=" + verkoopID +
+                ", datum=" + datum +
+                ", klantID=" + klantID +
+                ", totaalBedrag=" + totaalBedrag +
+                ", bestellingID=" + bestellingID +
+                ", grondstofID=" + grondstofID +
+                '}';
     }
 }

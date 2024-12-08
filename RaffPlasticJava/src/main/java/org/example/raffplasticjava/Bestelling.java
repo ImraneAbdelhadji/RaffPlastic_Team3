@@ -1,15 +1,13 @@
 package org.example.raffplasticjava;
 
-import java.time.LocalDateTime;
-
 public class Bestelling {
     private int bestellingID;
-    private LocalDateTime datum;
+    private String type;
     private String status;
 
-    public Bestelling(int bestellingID, LocalDateTime datum, String status) {
+    public Bestelling(int bestellingID, String type, String status) {
         this.bestellingID = bestellingID;
-        this.datum = datum;
+        this.type = type;
         this.status = status;
     }
 
@@ -21,12 +19,12 @@ public class Bestelling {
         this.bestellingID = bestellingID;
     }
 
-    public LocalDateTime getDatum() {
-        return datum;
+    public String getType() {
+        return type;
     }
 
-    public void setDatum(LocalDateTime datum) {
-        this.datum = datum;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getStatus() {
