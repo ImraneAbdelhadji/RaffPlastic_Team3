@@ -1,15 +1,34 @@
 package org.example.raffplasticjava;
 
+import java.math.BigDecimal;
+
+/**
+ * Represents a Grondstof (Raw Material).
+ */
 public class Grondstof {
+    public enum Kwaliteit {
+        LAAG(25), NORMAAL(50), HOOG(75);
+
+        private final int prijsPerTon;
+
+        Kwaliteit(int prijsPerTon) {
+            this.prijsPerTon = prijsPerTon;
+        }
+
+        public int getPrijsPerTon() {
+            return prijsPerTon;
+        }
+    }
+
     private int grondstofID;
     private String type;
-    private char kwaliteit;
-    private float prijs;
+    private Kwaliteit kwaliteit;
+    private BigDecimal prijs;
 
-    public Grondstof(int grondstofID, String type, char kwaliteit, float prijs) {
+    public Grondstof(int grondstofID, String type, Kwaliteit kwaliteit, BigDecimal prijs) {
         this.setGrondstofID(grondstofID);
-        this.type = type;
-        this.kwaliteit = kwaliteit;
+        this.setType(type);
+        this.setKwaliteit(kwaliteit);
         this.setPrijs(prijs);
     }
 
@@ -29,24 +48,30 @@ public class Grondstof {
     }
 
     public void setType(String type) {
+        if (type == null || type.isEmpty()) {
+            throw new IllegalArgumentException("Type mag niet leeg zijn.");
+        }
         this.type = type;
     }
 
-    public char getKwaliteit() {
+    public Kwaliteit getKwaliteit() {
         return kwaliteit;
     }
 
-    public void setKwaliteit(char kwaliteit) {
+    public void setKwaliteit(Kwaliteit kwaliteit) {
+        if (kwaliteit == null) {
+            throw new IllegalArgumentException("Kwaliteit mag niet null zijn.");
+        }
         this.kwaliteit = kwaliteit;
     }
 
-    public float getPrijs() {
+    public BigDecimal getPrijs() {
         return prijs;
     }
 
-    public void setPrijs(float prijs) {
-        if (prijs < 25.0f) {
-            throw new IllegalArgumentException("De prijs moet minimaal 25 euro zijn.");
+    public void setPrijs(BigDecimal prijs) {
+        if (prijs == null || prijs.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Prijs moet een positief bedrag zijn.");
         }
         this.prijs = prijs;
     }

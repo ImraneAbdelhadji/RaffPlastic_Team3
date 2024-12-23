@@ -6,13 +6,15 @@ public class Klant {
     private String achternaam;
     private String email;
 
+    // Constructor
     public Klant(int klantID, String voornaam, String achternaam, String email) {
-        this.setKlantID(klantID); // Validatie via setter
-        this.voornaam = voornaam;
-        this.achternaam = achternaam;
-        this.setEmail(email); // Validatie via setter
+        this.setKlantID(klantID);
+        this.setVoornaam(voornaam);
+        this.setAchternaam(achternaam);
+        this.setEmail(email);
     }
 
+    // Getters en Setters
     public int getKlantID() {
         return klantID;
     }
@@ -29,6 +31,9 @@ public class Klant {
     }
 
     public void setVoornaam(String voornaam) {
+        if (voornaam == null || voornaam.trim().isEmpty()) {
+            throw new IllegalArgumentException("Voornaam mag niet leeg zijn.");
+        }
         this.voornaam = voornaam;
     }
 
@@ -37,6 +42,9 @@ public class Klant {
     }
 
     public void setAchternaam(String achternaam) {
+        if (achternaam == null || achternaam.trim().isEmpty()) {
+            throw new IllegalArgumentException("Achternaam mag niet leeg zijn.");
+        }
         this.achternaam = achternaam;
     }
 
@@ -49,5 +57,15 @@ public class Klant {
             throw new IllegalArgumentException("Ongeldig e-mailadres.");
         }
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Klant{" +
+                "klantID=" + klantID +
+                ", voornaam='" + voornaam + '\'' +
+                ", achternaam='" + achternaam + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

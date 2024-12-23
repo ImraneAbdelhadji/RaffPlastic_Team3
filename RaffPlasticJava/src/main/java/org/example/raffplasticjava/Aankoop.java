@@ -1,20 +1,24 @@
 package org.example.raffplasticjava;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Represents an Aankoop (Purchase) with details such as supplier and amount.
+ */
 public class Aankoop {
     private int aankoopID;
     private LocalDateTime datum;
     private int leverancierID;
-    private float totaalBedrag;
+    private BigDecimal totaalBedrag;
     private int bestellingID;
 
-    public Aankoop(int aankoopID, LocalDateTime datum, int leverancierID, float totaalBedrag, int bestellingID) {
-        this.setAankoopID(aankoopID); // Gebruik de setter voor validatie
-        this.datum = datum;
-        this.leverancierID = leverancierID;
-        this.setTotaalBedrag(totaalBedrag); // Gebruik de setter voor validatie
-        this.bestellingID = bestellingID;
+    public Aankoop(int aankoopID, LocalDateTime datum, int leverancierID, BigDecimal totaalBedrag, int bestellingID) {
+        this.setAankoopID(aankoopID);
+        this.setDatum(datum);
+        this.setLeverancierID(leverancierID);
+        this.setTotaalBedrag(totaalBedrag);
+        this.setBestellingID(bestellingID);
     }
 
     public int getAankoopID() {
@@ -33,6 +37,9 @@ public class Aankoop {
     }
 
     public void setDatum(LocalDateTime datum) {
+        if (datum == null) {
+            throw new IllegalArgumentException("Datum mag niet null zijn.");
+        }
         this.datum = datum;
     }
 
@@ -41,16 +48,19 @@ public class Aankoop {
     }
 
     public void setLeverancierID(int leverancierID) {
+        if (leverancierID <= 0) {
+            throw new IllegalArgumentException("LeverancierID moet een positief getal zijn.");
+        }
         this.leverancierID = leverancierID;
     }
 
-    public float getTotaalBedrag() {
+    public BigDecimal getTotaalBedrag() {
         return totaalBedrag;
     }
 
-    public void setTotaalBedrag(float totaalBedrag) {
-        if (totaalBedrag < 0) {
-            throw new IllegalArgumentException("Het totaalbedrag mag niet negatief zijn.");
+    public void setTotaalBedrag(BigDecimal totaalBedrag) {
+        if (totaalBedrag == null || totaalBedrag.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Totaalbedrag moet een positief bedrag zijn.");
         }
         this.totaalBedrag = totaalBedrag;
     }
@@ -60,6 +70,9 @@ public class Aankoop {
     }
 
     public void setBestellingID(int bestellingID) {
+        if (bestellingID <= 0) {
+            throw new IllegalArgumentException("BestellingID moet een positief getal zijn.");
+        }
         this.bestellingID = bestellingID;
     }
 }

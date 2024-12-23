@@ -1,12 +1,15 @@
 package org.example.raffplasticjava;
 
+/**
+ * Represents an Afval (Waste) item.
+ */
 public class Afval {
     private int afvalID;
     private String type;
 
     public Afval(int afvalID, String type) {
-        this.setAfvalID(afvalID); // Gebruik de setter voor validatie
-        this.type = type;
+        this.setAfvalID(afvalID);
+        this.setType(type);
     }
 
     public int getAfvalID() {
@@ -25,6 +28,9 @@ public class Afval {
     }
 
     public void setType(String type) {
+        if (type == null || type.isEmpty()) {
+            throw new IllegalArgumentException("Type mag niet leeg zijn.");
+        }
         this.type = type;
     }
 }

@@ -1,14 +1,17 @@
 package org.example.raffplasticjava;
 
+/**
+ * Represents a Bestelling (Order).
+ */
 public class Bestelling {
     private int bestellingID;
     private String type;
     private String status;
 
     public Bestelling(int bestellingID, String type, String status) {
-        this.setBestellingID(bestellingID); // Gebruik de setter voor validatie
-        this.type = type;
-        this.status = status;
+        this.setBestellingID(bestellingID);
+        this.setType(type);
+        this.setStatus(status);
     }
 
     public int getBestellingID() {
@@ -27,6 +30,9 @@ public class Bestelling {
     }
 
     public void setType(String type) {
+        if (type == null || type.isEmpty()) {
+            throw new IllegalArgumentException("Type mag niet leeg zijn.");
+        }
         this.type = type;
     }
 
@@ -35,6 +41,9 @@ public class Bestelling {
     }
 
     public void setStatus(String status) {
+        if (status == null || status.isEmpty()) {
+            throw new IllegalArgumentException("Status mag niet leeg zijn.");
+        }
         this.status = status;
     }
 }

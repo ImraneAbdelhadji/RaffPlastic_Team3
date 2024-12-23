@@ -5,12 +5,14 @@ public class Leverancier {
     private String naam;
     private String email;
 
+    // Constructor
     public Leverancier(int leverancierID, String naam, String email) {
-        this.setLeverancierID(leverancierID); // Validatie via setter
-        this.naam = naam;
-        this.email = email;
+        this.setLeverancierID(leverancierID);
+        this.setNaam(naam);
+        this.setEmail(email);
     }
 
+    // Getters en Setters
     public int getLeverancierID() {
         return leverancierID;
     }
@@ -27,6 +29,9 @@ public class Leverancier {
     }
 
     public void setNaam(String naam) {
+        if (naam == null || naam.trim().isEmpty()) {
+            throw new IllegalArgumentException("Naam mag niet leeg zijn.");
+        }
         this.naam = naam;
     }
 
@@ -35,6 +40,18 @@ public class Leverancier {
     }
 
     public void setEmail(String email) {
+        if (email == null || !email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
+            throw new IllegalArgumentException("Ongeldig e-mailadres.");
+        }
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Leverancier{" +
+                "leverancierID=" + leverancierID +
+                ", naam='" + naam + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
