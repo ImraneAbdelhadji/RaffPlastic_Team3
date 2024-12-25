@@ -29,7 +29,7 @@ class PrijsBerekeningTest {
 
     @Test
     void testLageKwaliteitBinnenGeldigeGewichtsklasse() {
-        double gewicht = 0; // Geldig gewicht
+        double gewicht = 26; // Geldig gewicht
         String kwaliteit = "laag";
         double verwachtePrijs = 25.0 * gewicht;
         assertEquals(verwachtePrijs, berekenPrijs(kwaliteit, gewicht), 0.01);
