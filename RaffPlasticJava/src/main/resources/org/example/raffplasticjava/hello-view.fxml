@@ -1,16 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.raffplasticjava.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #003058;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.raffplasticjava.Login">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="636.0" fitWidth="258.0" layoutX="-28.0" layoutY="-40.0" pickOnBounds="true"
+                       preserveRatio="true">
+               <Image url="@../../../../../img/raff-plastics-logoc.jpg"/>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="354.0" style="-fx-background-color: #003058;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="28.0" layoutY="164.0" text="Gebruikersnaam" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="219.0" text="Wachtwoord" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtWachtwoord" layoutX="162.0" layoutY="215.0" />
+            <TextField fx:id="txtUsername" layoutX="162.0" layoutY="160.0" />
+            <Button fx:id="btnLogIn" layoutX="177.0" layoutY="275.0" mnemonicParsing="false" style="-fx-background-color: #014f8f;" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="95.0" layoutY="45.0" prefHeight="35.0" prefWidth="234.0" text="WELKOM BIJ RAFFPLASTICS!" textFill="#fcf7f7">
+               <font>
+                  <Font name="Segoe UI Black" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
