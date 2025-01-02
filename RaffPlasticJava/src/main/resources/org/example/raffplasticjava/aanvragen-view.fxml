@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.raffplasticjava.AanvraagController">
     <children>
         <TableView fx:id="aanvragenLijst" layoutX="50.0" layoutY="50.0" prefWidth="600.0" prefHeight="300.0">
