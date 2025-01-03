@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.raffplasticjava.Statusbieding"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Label layoutX="200.0" layoutY="20.0" text="Status van Mijn Biedingen" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+        <TableView fx:id="tableBiedingen" layoutX="50.0" layoutY="70.0" prefHeight="300.0" prefWidth="500.0">
+            <columns>
+                <TableColumn fx:id="colAfvalType" text="Afval Type" prefWidth="100.0" />
+                <TableColumn fx:id="colHoeveelheid" text="Hoeveelheid (ton)" prefWidth="150.0" />
+                <TableColumn fx:id="colPrijs" text="Prijs (€)" prefWidth="100.0" />
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="150.0" />
+            </columns>
+        </TableView>
+    </children>
+
+</AnchorPane>
