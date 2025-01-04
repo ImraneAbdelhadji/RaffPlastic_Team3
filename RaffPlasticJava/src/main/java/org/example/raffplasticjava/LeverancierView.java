@@ -32,11 +32,39 @@ public class LeverancierView {
 
     private ObservableList<Bieding> biedingenLijst;
 
+    // Constructor
+    public LeverancierView() {
+        // Initialiseer de biedingenlijst
+        biedingenLijst = FXCollections.observableArrayList();
+    }
+
+    @FXML
+    private void initialize() {
+        // Bind the TableView to the ObservableList
+        tableBiedingen.setItems(biedingenLijst);
+
+        // Set up the columns to display the properties of Bieding
+        TableColumn<Bieding, String> afvalTypeColumn = new TableColumn<>("Afval Type");
+        afvalTypeColumn.setCellValueFactory(new PropertyValueFactory<>("afvalType"));
+
+        TableColumn<Bieding, Double> hoeveelheidColumn = new TableColumn<>("Hoeveelheid (ton)");
+        hoeveelheidColumn.setCellValueFactory(new PropertyValueFactory<>("hoeveelheid"));
+
+        TableColumn<Bieding, Double> prijsColumn = new TableColumn<>("Prijs (€)");
+        prijsColumn.setCellValueFactory(new PropertyValueFactory<>("prijs"));
+
+        TableColumn<Bieding, String> statusColumn = new TableColumn<>("Status");
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        // Add columns to the TableView
+        tableBiedingen.getColumns().addAll(afvalTypeColumn, hoeveelheidColumn, prijsColumn, statusColumn);
+    }
+
     @FXML
     /**
      * Methode om een nieuwe bieding te bevestigen en toe te voegen aan de tabel.
      */
-    private void handleBevestigen() {
+    public void handleBevestigen() {
         try {
             String afvalType = txtAfvalType.getText();
             if (afvalType.isEmpty()) {

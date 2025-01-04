@@ -21,13 +21,6 @@
 
         <Button fx:id="btnBevestigen" layoutX="150.0" layoutY="230.0" text="BEVESTIGEN" onAction="#handleBevestigen" />
 
-        <TableView fx:id="tableBiedingen" layoutX="46.0" layoutY="284.0" prefHeight="174.0" prefWidth="481.0">
-            <columns>
-                <TableColumn text="Afval Type" />
-                <TableColumn text="Hoeveelheid (ton)" />
-                <TableColumn text="Prijs (€)" />
-                <TableColumn text="Status" />
-            </columns>
-        </TableView>
+        <TableView fx:id="tableBiedingen" layoutX="46.0" layoutY="284.0" prefHeight="174.0" prefWidth="481.0"/>
     </children>
 </AnchorPane>
