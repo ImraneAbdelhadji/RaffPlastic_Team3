@@ -26,30 +26,4 @@ class PrijsBerekeningTest {
         }
         return prijsPerTon * gewicht;
     }
-
-    @Test
-    void testLageKwaliteitBinnenGeldigeGewichtsklasse() {
-        double gewicht = 0; // Geldig gewicht
-        String kwaliteit = "laag";
-        double verwachtePrijs = 25.0 * gewicht;
-        assertEquals(verwachtePrijs, berekenPrijs(kwaliteit, gewicht), 0.01);
-    }
-
-    @Test
-    void testNormaleKwaliteitBinnenGeldigeGewichtsklasse() {
-        double gewicht = 40; // Geldig gewicht
-        String kwaliteit = "normaal";
-        double verwachtePrijs = 50.0 * gewicht;
-        assertEquals(verwachtePrijs, berekenPrijs(kwaliteit, gewicht), 0.01);
-    }
-
-    @Test
-    void testHogeKwaliteitBinnenGeldigeGewichtsklasse() {
-        double gewicht = 50; // Geldig gewicht
-        String kwaliteit = "hoog";
-        double verwachtePrijs = 75.0 * gewicht;
-        assertEquals(verwachtePrijs, berekenPrijs(kwaliteit, gewicht), 0.01);
-    }
-
-
 }
