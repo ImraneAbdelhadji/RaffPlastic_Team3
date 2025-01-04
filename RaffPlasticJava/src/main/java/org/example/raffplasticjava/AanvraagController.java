@@ -1,14 +1,15 @@
 package org.example.raffplasticjava;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
@@ -18,29 +19,56 @@ public class AanvraagController {
     public TableView<Aanvraag> aanvragenLijst;
     public TableView<Aanvraag> bestellingenLijst;
 
-    // Dummy lijsten met gegevens
-    private final ObservableList<Aanvraag> aanvragen = FXCollections.observableArrayList();
-    private final ObservableList<Aanvraag> bestellingen = FXCollections.observableArrayList();
+    // Gegevensmodel
+    private final ObservableList<Aanvraag> aanvragen = DataModel.getInstance().getAanvragen();
+    private final ObservableList<Aanvraag> bestellingen = DataModel.getInstance().getBestellingen();
 
     // Initialiseer gegevens (wordt automatisch aangeroepen door JavaFX)
     public void initialize() {
-        // Controleer of de tabel niet null is
-        if (aanvragenLijst != null) {
-            // Voeg kolomkoppelingen toe
-            aanvragenLijst.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("naam"));
-            aanvragenLijst.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("email"));
-            aanvragenLijst.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("prijs"));
-            aanvragenLijst.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("gewicht"));
-            aanvragenLijst.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("kwaliteit"));
-            aanvragenLijst.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("soortPlastic"));
+        configureTable(aanvragenLijst, aanvragen, true);
+        configureTable(bestellingenLijst, bestellingen, false);
+    }
 
-            // Voeg dummygegevens toe
-            aanvragen.add(new Aanvraag("Jan", "jan@example.com", 100.0, 10.0, "Hoog", "Plastic A"));
-            aanvragen.add(new Aanvraag("Eva", "eva@example.com", 200.0, 20.0, "Middel", "Plastic B"));
-            aanvragenLijst.setItems(aanvragen); // Koppel data aan de tabel
+    // Methode om een tabel te configureren
+    private void configureTable(TableView<Aanvraag> tableView, ObservableList<Aanvraag> data, boolean isAanvragen) {
+        if (tableView != null) {
+            tableView.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("naam"));
+            tableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("email"));
+            tableView.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("prijs"));
+            tableView.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("gewicht"));
+            tableView.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("kwaliteit"));
+            tableView.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("soortPlastic"));
+
+            tableView.setItems(data);
+
+            if (isAanvragen) {
+                TableColumn<Aanvraag, Void> actiesKolom = new TableColumn<>("Acties");
+                actiesKolom.setCellFactory(createKiezenKnopFactory());
+                tableView.getColumns().add(actiesKolom);
+            }
         }
     }
 
+    // Methode om de "Kiezen"-knoppen te genereren
+    private Callback<TableColumn<Aanvraag, Void>, TableCell<Aanvraag, Void>> createKiezenKnopFactory() {
+        return param -> new TableCell<>() {
+            private final Button kiezenKnop = new Button("Kiezen");
+
+            {
+                kiezenKnop.setOnAction(event -> {
+                    Aanvraag geselecteerdeAanvraag = getTableView().getItems().get(getIndex());
+                    aanvragen.remove(geselecteerdeAanvraag); // Verwijder uit aanvragenlijst
+                    bestellingen.add(geselecteerdeAanvraag); // Voeg toe aan bestellingenlijst
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : kiezenKnop);
+            }
+        };
+    }
 
     // Navigatiemethoden
     public void openInhoudspagina(ActionEvent event) throws IOException {
@@ -59,7 +87,6 @@ public class AanvraagController {
         System.exit(0);
     }
 
-    // Functionaliteit
     public void sortAanvragen(ActionEvent event) {
         if (aanvragenLijst != null) {
             aanvragen.sort((a1, a2) -> a1.getNaam().compareToIgnoreCase(a2.getNaam()));
@@ -67,10 +94,14 @@ public class AanvraagController {
         }
     }
 
+    // Functionaliteit
     public void annuleerBestelling(ActionEvent event) {
-        if (bestellingenLijst != null && !bestellingen.isEmpty()) {
-            bestellingen.remove(0); // Verwijder de eerste bestelling als voorbeeld
-            bestellingenLijst.refresh();
+        if (bestellingenLijst != null) {
+            Aanvraag geselecteerdeBestelling = bestellingenLijst.getSelectionModel().getSelectedItem();
+            if (geselecteerdeBestelling != null) {
+                bestellingen.remove(geselecteerdeBestelling); // Verwijder uit bestellingenlijst
+                aanvragen.add(geselecteerdeBestelling); // Voeg terug toe aan aanvragenlijst
+            }
         }
     }
 
