@@ -1,11 +1,13 @@
 package org.example.raffplasticjava;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Login {
 
@@ -16,32 +18,59 @@ public class Login {
     private PasswordField txtWachtwoord;
 
     @FXML
-    private Button btnLogIn;
+    private ChoiceBox<String> cbAccount;
+
 
     @FXML
-    private void handleLogin(ActionEvent event) {
+    private void handleLogin() {
         String username = txtUsername.getText();
         String password = txtWachtwoord.getText();
+        String userType = cbAccount.getValue();
 
-        // Voorbeeld van eenvoudige validatie
-        if (username.isEmpty() || password.isEmpty()) {
-            showAlert("Error", "Vul alle velden in!");
+        // Controleer of alle velden zijn ingevuld
+        if (username.isEmpty() || password.isEmpty() || userType == null) {
+            showAlert(Alert.AlertType.ERROR, "Foutmelding", "Vul alle velden in!");
             return;
         }
 
-        // Voeg hier de logica toe om te controleren of de inloggegevens correct zijn
-        if (username.equals("admin") && password.equals("admin")) {
-            showAlert("Succes", "Welkom " + username + "!");
+        // Simuleer authenticatie met testgegevens
+        if (authenticateUser (username, password, userType)) {
+            // Laad de juiste view op basis van het type gebruiker
+            String fxmlFile = userType.equals("Klant") ? "klant-view.fxml" : "biedingen.fxml";
+            switchToView(fxmlFile); // Verplaats de try-catch hierheen
         } else {
-            showAlert("Fout", "Ongeldige inloggegevens!");
+            showAlert(Alert.AlertType.ERROR, "Foutmelding", "Ongeldige inloggegevens!");
         }
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private boolean authenticateUser(String username, String password, String userType) {
+        // Voeg hier echte authenticatie toe. Gebruik voorlopig testgegevens:
+        if (userType.equals("Klant")) {
+            return username.equals("testklant") && password.equals("1234");
+        } else if (userType.equals("Leverancier")) {
+            return username.equals("testleverancier") && password.equals("abcd");
+        }
+        return false;
+    }
+
+    private void switchToView(String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent root = loader.load();
+            Stage stage = (Stage) txtUsername.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Foutmelding", "Kon het FXML-bestand niet laden: " + fxmlFile);
+        }
+    }
+
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
         alert.setTitle(title);
-        alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.showAndWait();
+        alert.show();
     }
 }
