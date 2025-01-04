@@ -33,7 +33,7 @@ public class WinkelmandView {
             Label itemLabel = new Label(String.format("%s (%s) - %.2f ton - €%.2f",
                     item.getGrondstof(), item.getKwaliteit(), item.getHoeveelheid(), item.getPrijs()));
             itemList.getChildren().add(itemLabel);
-            totaalBedrag += item.getPrijs();
+            totaalBedrag += item.getPrijs(); // Prijs van elk item toevoegen aan totaal
         }
 
         lblTotal.setText(String.format("Totaal: €%.2f", totaalBedrag));

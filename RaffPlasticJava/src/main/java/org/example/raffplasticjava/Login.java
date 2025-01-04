@@ -36,7 +36,7 @@ public class Login {
         // Simuleer authenticatie met testgegevens
         if (authenticateUser (username, password, userType)) {
             // Laad de juiste view op basis van het type gebruiker
-            String fxmlFile = userType.equals("Klant") ? "klant-view.fxml" : "biedingen.fxml";
+            String fxmlFile = userType.equals("Klant") ? "klant-view.fxml" : "leverancier-view.fxml";
             switchToView(fxmlFile); // Verplaats de try-catch hierheen
         } else {
             showAlert(Alert.AlertType.ERROR, "Foutmelding", "Ongeldige inloggegevens!");
