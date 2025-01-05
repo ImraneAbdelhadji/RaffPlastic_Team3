@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="492.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.raffplasticjava.LeverancierView">
+    <children>
+
+        <Label layoutX="50.0" layoutY="80.0" text="Type afval:" />
+        <TextField fx:id="txtAfvalType" layoutX="150.0" layoutY="75.0" />
+
+        <Label layoutX="50.0" layoutY="130.0" text="Hoeveelheid (ton):" />
+        <TextField fx:id="txtHoeveelheid" layoutX="150.0" layoutY="125.0" />
+
+        <Label layoutX="50.0" layoutY="180.0" text="Prijs per ton (€):" />
+        <TextField fx:id="txtPrijs" layoutX="150.0" layoutY="175.0" />
+
+        <Button fx:id="btnBevestigen" layoutX="150.0" layoutY="230.0" text="BEVESTIGEN" />
+
+        <TableView fx:id="tableBiedingen" layoutX="46.0" layoutY="284.0" prefHeight="174.0" prefWidth="481.0">
+            <columns>
+                <TableColumn text="Afval Type" />
+                <TableColumn text="Hoeveelheid (ton)" />
+                <TableColumn text="Prijs (€)" />
+                <TableColumn text="Status" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
