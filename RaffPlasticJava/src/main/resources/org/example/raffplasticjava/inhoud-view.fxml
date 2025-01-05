@@ -7,6 +7,6 @@
     <children>
         <Button onAction="#openAanvragenPagina" prefHeight="50.0" prefWidth="200.0" text="Aanvragen" />
         <Button onAction="#openBestellingenPagina" prefHeight="50.0" prefWidth="200.0" text="Bestellingen" />
-        <Button onAction="#sluitenApp" prefHeight="50.0" prefWidth="200.0" text="Sluiten" />
+        <Button onAction="#uitloggen" prefHeight="50.0" prefWidth="200.0" text="Uitloggen" />
     </children>
 </VBox>
