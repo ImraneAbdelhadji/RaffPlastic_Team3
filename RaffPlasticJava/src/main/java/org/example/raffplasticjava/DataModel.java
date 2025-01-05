@@ -12,7 +12,7 @@ public class DataModel {
     private DataModel() {
         // Voeg dummygegevens toe aan de aanvragenlijst
         aanvragen.add(new Aanvraag("Jan", "jan@example.com", 100.0, 10.0, "Hoog", "Plastic A"));
-        aanvragen.add(new Aanvraag("Eva", "eva@example.com", 200.0, 20.0, "Middel", "Plastic B"));
+        aanvragen.add(new Aanvraag("Eva", "eva@example.com", 200.0, 20.0, "Normaal", "Plastic B"));
     }
 
     public static DataModel getInstance() {
