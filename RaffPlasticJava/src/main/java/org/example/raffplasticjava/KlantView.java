@@ -29,6 +29,9 @@ public class KlantView {
     private static ObservableList<WinkelmandItem> winkelmandItems = FXCollections.observableArrayList();
 
     @FXML
+    private Label lblMelding; // Label voor meldingen in de UI
+
+    @FXML
     public void toevoegenAanWinkelmand() {
         // Ophalen van invoervelden
         String grondstof = grondstofChoice.getValue();
@@ -37,12 +40,20 @@ public class KlantView {
 
         // Validatie van invoer
         if (grondstof == null || kwaliteit == null || hoeveelheidText.isEmpty()) {
-            System.out.println("Vul alle velden in.");
+            lblMelding.setText("Vul alle velden in."); // Toon melding in UI
+            lblMelding.setStyle("-fx-text-fill: red;"); // Tekstkleur rood voor fout
             return;
         }
 
         try {
             double hoeveelheid = Double.parseDouble(hoeveelheidText);
+
+            // Gewicht moet tussen 25t en 50t liggen
+            if (hoeveelheid < 25 || hoeveelheid > 50) {
+                lblMelding.setText("Gewicht moet tussen 25t en 50t liggen."); // Toon foutmelding in UI
+                lblMelding.setStyle("-fx-text-fill: red;"); // Tekstkleur rood
+                return;
+            }
 
             // Prijsberekening met de nieuwe PrijsBerekening-klasse
             PrijsBerekening prijsBerekening = new PrijsBerekening();
@@ -52,6 +63,10 @@ public class KlantView {
             WinkelmandItem item = new WinkelmandItem(grondstof, kwaliteit, hoeveelheid, prijs);
             winkelmandItems.add(item);
 
+            // Succesmelding
+            lblMelding.setText("Item succesvol toegevoegd: " + grondstof + " (" + hoeveelheid + "t)!");
+            lblMelding.setStyle("-fx-text-fill: green;"); // Tekstkleur groen voor succes
+
             // Velden resetten
             txtHoeveelheid.clear();
             grondstofChoice.setValue(null);
@@ -60,9 +75,11 @@ public class KlantView {
             System.out.println("Toegevoegd aan winkelmand: " + grondstof + ", " + kwaliteit + ", " + hoeveelheid + " ton, €" + prijs);
 
         } catch (NumberFormatException e) {
-            System.out.println("Ongeldige invoer voor hoeveelheid.");
+            lblMelding.setText("Ongeldige invoer voor hoeveelheid."); // Toon melding in UI
+            lblMelding.setStyle("-fx-text-fill: red;"); // Tekstkleur rood
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            lblMelding.setText(e.getMessage()); // Toon exception melding in UI
+            lblMelding.setStyle("-fx-text-fill: red;"); // Tekstkleur rood
         }
     }
 
