@@ -85,7 +85,7 @@ public class AanvraagController {
 
     // Voeg deze methode toe om uit te loggen
     public void uitloggen(ActionEvent event) throws IOException {
-        navigateTo(event, "home-view.fxml"); // Zorg ervoor dat "home-view.fxml" naar de juiste homepagina verwijst
+        navigateTo(event, "hello-view.fxml"); // Zorg ervoor dat "home-view.fxml" naar de juiste homepagina verwijst
     }
 
 
