@@ -12,8 +12,8 @@
                 <TableColumn text="Naam" />
                 <TableColumn text="Email" />
                 <TableColumn text="Prijs" />
-                <TableColumn prefWidth="107.20001220703125" text="Gewicht" />
-                <TableColumn prefWidth="117.60000610351562" text="Hoeveelheid (ton)" />
+                <TableColumn prefWidth="107.20001220703125" text="Hoeveelheid (ton)" />
+                <TableColumn prefWidth="117.60000610351562" text="Kwaliteit" />
                 <TableColumn prefWidth="99.20001220703125" text="Soort Plastic" />
             </columns>
         </TableView>
