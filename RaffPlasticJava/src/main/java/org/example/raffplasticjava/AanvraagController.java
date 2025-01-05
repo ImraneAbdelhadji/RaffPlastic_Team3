@@ -83,9 +83,11 @@ public class AanvraagController {
         navigateTo(event, "bestellingen-view.fxml");
     }
 
-    public void sluitenApp(ActionEvent event) {
-        System.exit(0);
+    // Voeg deze methode toe om uit te loggen
+    public void uitloggen(ActionEvent event) throws IOException {
+        navigateTo(event, "home-view.fxml"); // Zorg ervoor dat "home-view.fxml" naar de juiste homepagina verwijst
     }
+
 
     public void sortAanvragen(ActionEvent event) {
         if (aanvragenLijst != null) {
