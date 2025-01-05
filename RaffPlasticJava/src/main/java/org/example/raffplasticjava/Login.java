@@ -20,7 +20,6 @@ public class Login {
     @FXML
     private ChoiceBox<String> cbAccount;
 
-
     @FXML
     private void handleLogin() {
         String username = txtUsername.getText();
@@ -34,10 +33,24 @@ public class Login {
         }
 
         // Simuleer authenticatie met testgegevens
-        if (authenticateUser (username, password, userType)) {
+        if (authenticateUser(username, password, userType)) {
             // Laad de juiste view op basis van het type gebruiker
-            String fxmlFile = userType.equals("Klant") ? "klant-view.fxml" : "leverancier-view.fxml";
-            switchToView(fxmlFile); // Verplaats de try-catch hierheen
+            String fxmlFile;
+            switch (userType) {
+                case "Klant":
+                    fxmlFile = "klant-view.fxml";
+                    break;
+                case "Leverancier":
+                    fxmlFile = "leverancier-view.fxml";
+                    break;
+                case "Admin":
+                    fxmlFile = "inhoud-view.fxml";
+                    break;
+                default:
+                    showAlert(Alert.AlertType.ERROR, "Foutmelding", "Onbekend gebruikerstype!");
+                    return;
+            }
+            switchToView(fxmlFile);
         } else {
             showAlert(Alert.AlertType.ERROR, "Foutmelding", "Ongeldige inloggegevens!");
         }
@@ -49,6 +62,8 @@ public class Login {
             return username.equals("testklant") && password.equals("1234");
         } else if (userType.equals("Leverancier")) {
             return username.equals("testleverancier") && password.equals("abcd");
+        } else if (userType.equals("Admin")) {
+            return username.equals("admin") && password.equals("admin");
         }
         return false;
     }
@@ -65,7 +80,6 @@ public class Login {
             showAlert(Alert.AlertType.ERROR, "Foutmelding", "Kon het FXML-bestand niet laden: " + fxmlFile);
         }
     }
-
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

@@ -5,10 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.raffplasticjava.AanvraagController">
+<AnchorPane prefHeight="418.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.raffplasticjava.AanvraagController">
     <children>
-        <TableView fx:id="aanvragenLijst" layoutX="50.0" layoutY="50.0" prefWidth="700.0" prefHeight="300.0">
+        <TableView fx:id="aanvragenLijst" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="700.0">
             <columns>
                 <TableColumn text="Naam" />
                 <TableColumn text="Email" />
@@ -19,9 +18,7 @@
                 <TableColumn text="Acties" />
             </columns>
         </TableView>
-        <Button text="Sorteren" layoutX="500.0" layoutY="370.0" prefWidth="100.0"
-                onAction="#sortAanvragen" />
-        <Button text="Terug" layoutX="50.0" layoutY="370.0" prefWidth="100.0"
-                onAction="#openInhoudspagina" />
+        <Button layoutX="500.0" layoutY="370.0" onAction="#sortAanvragen" prefWidth="100.0" text="Sorteren" />
+        <Button layoutX="50.0" layoutY="370.0" onAction="#openInhoudspagina" prefWidth="100.0" text="Terug" />
     </children>
 </AnchorPane>
