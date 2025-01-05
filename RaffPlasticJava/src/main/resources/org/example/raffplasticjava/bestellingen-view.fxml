@@ -5,21 +5,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.raffplasticjava.AanvraagController">
+<AnchorPane prefHeight="426.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.raffplasticjava.AanvraagController">
     <children>
-        <TableView fx:id="bestellingenLijst" layoutX="50.0" layoutY="50.0" prefWidth="600.0" prefHeight="300.0">
+        <TableView fx:id="bestellingenLijst" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="600.0">
             <columns>
                 <TableColumn text="Naam" />
                 <TableColumn text="Email" />
                 <TableColumn text="Prijs" />
-                <TableColumn text="Aantal Gewicht" />
-                <TableColumn text="Kwaliteit" />
-                <TableColumn text="Soort Plastic" />
+                <TableColumn prefWidth="107.20001220703125" text="Gewicht" />
+                <TableColumn prefWidth="117.60000610351562" text="Hoeveelheid (ton)" />
+                <TableColumn prefWidth="99.20001220703125" text="Soort Plastic" />
             </columns>
         </TableView>
-        <Button text="Annuleren" layoutX="500.0" layoutY="370.0" prefWidth="100.0"
-                onAction="#annuleerBestelling" />
-        <Button text="Terug" layoutX="50.0" layoutY="370.0" prefWidth="100.0"
-                onAction="#openInhoudspagina" />
+        <Button layoutX="500.0" layoutY="370.0" onAction="#annuleerBestelling" prefWidth="100.0" text="Annuleren" />
+        <Button layoutX="50.0" layoutY="370.0" onAction="#openInhoudspagina" prefWidth="100.0" text="Terug" />
     </children>
 </AnchorPane>

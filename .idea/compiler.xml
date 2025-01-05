@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="RaffPlastics_Team3 (1)" />
+        <module name="RaffPlasticJava" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="RaffPlasticJava" target="17" />
       <module name="RaffPlasticJava (1)" target="17" />
       <module name="RaffPlastics_Team3" target="17" />
     </bytecodeTargetLevel>
