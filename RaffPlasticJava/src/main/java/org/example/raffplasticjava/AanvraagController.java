@@ -45,9 +45,16 @@ public class AanvraagController {
                 TableColumn<Aanvraag, Void> actiesKolom = new TableColumn<>("Acties");
                 actiesKolom.setCellFactory(createKiezenKnopFactory());
                 tableView.getColumns().add(actiesKolom);
+
+                // Kolom voor "Weigeren"-knoppen
+                TableColumn<Aanvraag, Void> weigerenKolom = new TableColumn<>("Weigeren");
+                weigerenKolom.setCellFactory(createWeigerenKnopFactory());
+                tableView.getColumns().add(weigerenKolom);
             }
         }
     }
+
+
 
     // Methode om de "Kiezen"-knoppen te genereren
     private Callback<TableColumn<Aanvraag, Void>, TableCell<Aanvraag, Void>> createKiezenKnopFactory() {
@@ -66,6 +73,27 @@ public class AanvraagController {
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
                 setGraphic(empty ? null : kiezenKnop);
+            }
+        };
+    }
+
+    // Methode om de "Weigeren"-knoppen te genereren
+    private Callback<TableColumn<Aanvraag, Void>, TableCell<Aanvraag, Void>> createWeigerenKnopFactory() {
+        return param -> new TableCell<>() {
+            private final Button weigerenKnop = new Button("Weigeren");
+
+            {
+                weigerenKnop.setOnAction(event -> {
+                    Aanvraag geselecteerdeAanvraag = getTableView().getItems().get(getIndex());
+                    aanvragen.remove(geselecteerdeAanvraag); // Verwijder uit aanvragenlijst
+                    System.out.println("Aanvraag geweigerd: " + geselecteerdeAanvraag.getNaam());
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : weigerenKnop);
             }
         };
     }
