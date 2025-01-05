@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.raffplasticjava.AanvraagController" spacing="20" alignment="CENTER">
+    <children>
+        <Button text="Aanvragen" prefWidth="200.0" prefHeight="50.0"
+                onAction="#openAanvragenPagina" />
+        <Button text="Bestellingen" prefWidth="200.0" prefHeight="50.0"
+                onAction="#openBestellingenPagina" />
+        <Button text="Sluiten" prefWidth="200.0" prefHeight="50.0"
+                onAction="#sluitenApp" />
+    </children>
+</VBox>
